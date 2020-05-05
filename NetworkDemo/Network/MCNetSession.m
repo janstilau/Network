@@ -134,16 +134,6 @@
 
 - (NSMutableDictionary *)unEncryptunCacheParams {
     NSMutableDictionary *requestBody = [NSMutableDictionary dictionaryWithCapacity:20];
-    UIDevice *currentDevice = [UIDevice currentDevice];
-    requestBody[@"device_id"] = safeStr(currentDevice.uuid);
-    requestBody[@"timestamp"] = [NSDate serverDateString];
-    requestBody[@"platform"] = @"0"; // 0:iOS，1:Android
-    requestBody[@"app_version_code"] = XcodeVersionCode;
-    requestBody[@"app_version_name"] = XcodeAppVersion;
-    requestBody[@"version_name"] = XcodeAppVersion;
-    if ([[_loginUser accessToken] length]) {
-       requestBody[@"access_token"] = _loginUser.accessToken;
-    }
     [requestBody addEntriesFromDictionary:_params];
     return requestBody;
 }

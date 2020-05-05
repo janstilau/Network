@@ -382,21 +382,6 @@ NSString *const MCNetworkMessageTimedOut = @"网络不好哦 请检查网络后�
 
 - (void)reactBusinessError:(HTTPResponse *)response {
     NSInteger errorCode = response.errorCode;
-    if (errorCode == 100007 || errorCode == 201020) { // 未传入token || 传入的token找不到人
-        [MCLoginUserManager logoutWithHintTitle:@"" completion:nil];
-    } else if (errorCode == 200021) { // token失效
-        [_applicationContext.navigationController popToRootViewControllerAnimated:false];
-        [_applicationContext.homeMainViewController setPageIndex:0];
-        [MCLoginUserManager logoutWithHintTitle:@"账号已在其他设备登录" completion:nil];
-    } else if (errorCode == 200069) { // 被封号
-        [_applicationContext.navigationController popToRootViewControllerAnimated:false];
-        [_applicationContext.homeMainViewController setPageIndex:0];
-        [MCLoginUserManager logoutWithCompletion:nil];
-    } else if (errorCode == 205000) {
-        [_applicationContext.navigationController popToRootViewControllerAnimated:false];
-        [_applicationContext.homeMainViewController setPageIndex:0];
-        [MCLoginUserManager logoutWithHintTitle:@"账号已注销" completion:nil];
-    }
     if (!ENV_RELEASE) {
         [MCBannerAlertView showMessage:response.msg];
     }

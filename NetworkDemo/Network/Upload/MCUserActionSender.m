@@ -62,7 +62,7 @@ static MCUserActionItem *sending_ = nil;
 }
 
 + (NSString *)sendUrl {
-    return @"http://t.moegoapp.mocaapp.cn/common/interface";
+    return @"";
 }
 
 + (void)updateActionList {
